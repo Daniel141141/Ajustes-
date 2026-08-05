@@ -19,16 +19,10 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        # Instala dependências básicas e adiciona suporte a pacotes legados se preciso
         sudo apt-get install -y \
             git zip unzip openjdk-17-jdk autoconf libtool pkg-config \
             zlib1g-dev libncurses5-dev libncursesw5-dev \
             cmake libffi-dev libssl-dev ccache
-            
-        # Solução para o libtinfo5 em sistemas Ubuntu modernos
-        sudo apt-get install -y wget
-        wget http://archive.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.4-2_amd64.deb
-        sudo dpkg -i libtinfo5_6.4-2_amd64.deb
 
         pip install --upgrade pip
         pip install Cython==0.29.36 buildozer
@@ -40,4 +34,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: package
-        path: bin/*.apk     
+        path: bin/*.apk
